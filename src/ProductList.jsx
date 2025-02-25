@@ -1,10 +1,14 @@
 import React, { useState,useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import './ProductList.css'
 import CartItem from './CartItem';
-import addItem from './Cartslice';
+import addItem from './CartSlice';
+
+
 function ProductList() {
     const [showCart, setShowCart] = useState(false); 
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
+    const dispatch = useDispatch();
 
     const plantsArray = [
         {
@@ -220,7 +224,7 @@ function ProductList() {
     padding: '15px',
     display: 'flex',
     justifyContent: 'space-between',
-    alignIems: 'center',
+    alignItems: 'center',
     fontSize: '20px',
    }
    const styleObjUl={
@@ -249,13 +253,14 @@ const handlePlantsClick = (e) => {
     setShowCart(false);
   };
 
-  const handleAddToCart = (product) => {
-  dispatch(addItem(product));
-  setAddedToCart((prevState) => ({
-     ...prevState,
-     [product.name]: true, // Set the product name as key and value as true to indicate it's added to cart
-   }));
-};
+  const handleAddToCart = (item) => {
+    dispatch(addItem(item));  // Ensure you're passing the correct product object
+    setAddedToCart((prevState) => ({
+      ...prevState,
+      [item.name]: true, // Set the product name as key and value as true to indicate it's added to cart
+    }));
+  };
+  
     return (
         <div>
              <div className="navbar" style={styleObj}>
@@ -294,12 +299,23 @@ const handlePlantsClick = (e) => {
     </div>
     ))}
 
+
         </div>
- ) :  (
-    <CartItem onContinueShopping={handleContinueShopping}/>
-)}
-    </div>
+ ) : (  // Render Cart if showCart is true
+                <div className="cart">
+                    <h2>Your Cart</h2>
+                    {cart.length > 0 ? (
+                        cart.map((item, index) => (
+                            <CartItem key={index} item={item} />
+                        ))
+                    ) : (
+                        <p>Your cart is empty.</p>
+                    )}
+                    <button onClick={handleContinueShopping}>Continue Shopping</button>
+                </div>
+            )}
+        </div>
     );
-}
+};
 
 export default ProductList;
