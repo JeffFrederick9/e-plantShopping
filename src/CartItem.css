@@ -25,17 +25,20 @@
   font-weight: bold;
   margin-bottom: 5px;
   font-size: 25px;
+  color: black;
 }
 
 .cart-item-cost {
   margin-bottom: 10px;
   margin-top: 10px;
+  color: black;
 }
 
 .cart-item-quantity {
   display: flex;
   align-items: center;
   margin-bottom: 15px;
+  color: black;
 }
 
 .cart-item-button {
@@ -53,10 +56,12 @@
   font-size: 16px;
   font-weight: bold;
   margin: 0 10px;
+  color: black;
 }
 
 .cart-item-total {
   font-weight: bold;
+  color: black;
 }
 
 .cart-item-delete {
@@ -211,10 +216,12 @@
     justify-content: center;
     gap: 20px;
     margin-top: 20px;
+    color: black;
    }
    .total_cart_amount{
     font-size: 20px;
     font-weight: 900;
+    color: black;
    }
 .continue_shopping_btn{
   margin-top: -50px;
