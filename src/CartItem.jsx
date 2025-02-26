@@ -13,20 +13,20 @@ const CartItem = ({ onContinueShopping }) => {
   };
 
   const handleIncrement = (item) => {
-    dispatch(updateQuantity({ id: item.id, quantity: item.quantity + 1 }));  // Updated to use item.id
+    dispatch(updateQuantity({ name: item.name, quantity: item.quantity + 1 }));  
   };
 
   const handleDecrement = (item) => {
     if (item.quantity > 1) {
-      dispatch(updateQuantity({ id: item.id, quantity: item.quantity - 1 }));  // Updated to use item.id
+      dispatch(updateQuantity({ name: item.name, quantity: item.quantity - 1 }));
     }
   };
 
   const handleRemove = (item) => {
-    dispatch(removeItem(item.id));  // Updated to use item.id
+    dispatch(removeItem(item.name));  
   };
 
-  const handleCheckoutShopping = () => {
+  const handleCheckoutShopping = (e) => {
     alert('Functionality to be added for future reference');
   };
 
@@ -37,9 +37,9 @@ const CartItem = ({ onContinueShopping }) => {
   return (
     <div className="cart-container">
       <h2 style={{ color: 'black' }}>Total Cart Amount: ${calculateTotalAmount().toFixed(2)}</h2>
-      <div>
+      <div>``
         {cart.map(item => (
-          <div className="cart-item" key={item.id}> {/* Use item.id instead of item.name */}
+          <div className="cart-item" key={'${item.name}--${item.quantity}'}>
             <img className="cart-item-image" src={item.image} alt={item.name} />
             <div className="cart-item-details">
               <div className="cart-item-name">{item.name}</div>
